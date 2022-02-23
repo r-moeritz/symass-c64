@@ -11,8 +11,8 @@
 ;
 ;
 ;zero page equates
-                  sta src =$50      ;start of source
-                  sta var =$2d      ;end of source
+                  stasrc =$50       ;start of source
+                  stavar =$2d       ;end of source
                   memsiz = $37      ;top of symbol table
                   link = $4e        ;basic line link
                   line = $39        ;current line number
@@ -31,7 +31,7 @@
                   t5 = $60
                   flag = $02        ;first or second pass
 ;constants
-                  nop s =56         ;number of instructions
+                  nops =56         ;number of instructions
                   ready = $a474     ;basic ready
                   inline = $bdc2    ;print 'in line'
                   contbas = $a7ae   ;continue basic
@@ -128,7 +128,7 @@ n1                iny
                   inc ad+1
 n                 jmp getword
 ;
-                  sec pass =*       ;begin second pass
+                  secpass =*       ;begin second pass
 ;
                   inc flag
                   ldx #<messsec     ;second pass
@@ -513,7 +513,7 @@ hx                jmp last
                   jsr inline
                   jmp listline
 ;
-                  dec i =*          ;convert decimal
+                  deci =*          ;convert decimal
 ;
                   lda #0
                   sta t1
@@ -946,7 +946,7 @@ w1                lda (ad),y
                   beq w2
                   cmp #":"
                   beq w5
-                  cmp #"            ;"
+                  cmp #";"
                   beq w5
                   cmp #$b2          ; =
                   beq w5
